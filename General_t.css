@@ -1,0 +1,109 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+
+    
+      background-image: url('./3bata/3bata1.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #111;
+  }
+
+  .container {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 40px;
+  border-radius: 25px;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.6s ease;
+  max-width: 1100px;
+  width: 90%;
+  
+  /* الإضافة المهمة 👇 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.c h1{
+   color: #53a4c6; 
+}
+
+  .container:hover {
+    transform: scale(1.03);
+    background: linear-gradient(135deg, #ff008055, #ff7b0067);
+    box-shadow: 0 0 60px rgb(252, 60, 121), 0 0 100px rgba(0, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .grid {
+    display: grid;
+    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    transition: all 0.4s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  }
+
+  .card:hover {
+    transform: translateY(-10px) scale(1.05);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+  }
+
+  .card h2 {
+    margin-bottom: 10px;
+    color: #fff;
+  }
+
+  .card p {
+    color: #ddd;
+  }
+
+  /* اللابتوب */
+  @media (min-width: 992px) {
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+
+  .card.locked {
+  overflow: hidden;
+  pointer-events: none; /* عشان الكارت مايتضغطش */
+  position: relative;
+}
+
+.card.locked::after {
+  content: " 🔒Entii w shtartk🔒";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75) url('lock.png') center/80px no-repeat; /* حط صورة القفل هنا */
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding-bottom: 15px;
+  letter-spacing: 1px;
+  backdrop-filter: blur(3px);
+}
