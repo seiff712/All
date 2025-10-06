@@ -9,7 +9,7 @@ body {
     min-height: 100vh;
 
     
-      background-image: url('./3bata/3bata1.jpg');
+      background-image: url('https://github.com/seiff712/All/blob/72ef50d666435782497ddbfddde4c5b95021cec3/3bata1.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -107,3 +107,4 @@ body {
   letter-spacing: 1px;
   backdrop-filter: blur(3px);
 }
+
