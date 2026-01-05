@@ -17,7 +17,7 @@
   <div id="pwGate" class="pwGate">
     <div class="pwCard">
       <h2>🔒Password🔒</h2>
-      <input id="pwInput" type="password" placeholder="Hint:xx/xx" autocomplete="current-password" />
+      <input id="pwInput" type="password" placeholder="PASS:xx/xx" autocomplete="current-password" />
       <button id="pwBtn">open</button>
       <p id="pwErr" class="pwErr"></p>
     </div>
@@ -115,7 +115,7 @@
     document.getElementById("pwBtn").addEventListener("click", () => {
       err.textContent = "";
       if (input.value === PASSWORD) unlock();
-      else err.textContent = "Noh msh da";
+      else err.textContent = "Noh msh da graby a7la youm kda";
     });
 
     input.addEventListener("keydown", (e) => {
@@ -127,4 +127,5 @@
 </body>
 
 </html>
+
 
