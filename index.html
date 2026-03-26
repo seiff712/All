@@ -1,149 +1,308 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Amany Kadry</title>
-  <link rel="stylesheet" href="General_t.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snake Game</title>
 
-  <style>
-
-   
-  </style>
-</head>
-<body>
-
-  <!-- شاشة الباسورد -->
-  <div id="pwGate" class="pwGate">
-    <div class="pwCard">
-      <h2>🔒Password🔒</h2>
-      <input id="pwInput" type="password" placeholder="PASS:xx/xx" autocomplete="current-password" />
-      <button id="pwBtn">open</button>
-      <p id="pwErr" class="pwErr"></p>
-    </div>
-  </div>
-
-  <!-- محتوى الصفحة الحقيقي -->
-  <div id="pageContent" hidden>
-    <div class="container">
-      <header>
-        <div class="c">
-          <h1>✋HENA HA7OTLK KOL 7AGA H3MLHALK🤚</h1>
-        </div>
-        <p>w entii w 7azk hfd7na wla laa🦦</p>
-      </header>
-
-      <section class="grid">
-        <div class="card">
-          <h3>✨Awl Mara✨</h3>
-          <p> Kont awl mara agrab aktb 7aga👉👈</p>
-          <a href="https://seiff712.github.io/test1/" class="btn" target="_blank" rel="noopener noreferrer">Dosii hena</a>
-        </div>
-
-        <div class="card">
-          <h3>Eltanya☝️</h3>
-          <p>hena b2a kanet awl mara agrab 7aga kbiraa🤭🤙</p>
-          <a href="https://seiff712.github.io/3bata/" class="btn" target="_blank" rel="noopener noreferrer">Ew3ii tdosy</a>
-        </div>
-
-        <div class="card">
-          <h3>Eltaltaa😆</h3>
-          <p>Dii 7awly m3ahaa law 3rfty tfta7iha h3mlk elnefsk fy😂</p>
-          <a href="#" class="btn">grabyyy</a>
-        </div>
-
-        <div class="card">
-          <h3>Elrab3aa😋</h3>
-          <p>Dii zy le3ba kda 3mlthalk</p>
-          <a href="https://seiff712.github.io/game/" class="btn" target="_blank" rel="noopener noreferrer">efta7yy</a>
-        </div>
-
-        <div class="card">
-          <h3>El khames ❤</h3>
-          <p>spin w hn3ml el hytla3 kolo</p>
-          <a href="https://seiff712.github.io/5/" class="btn" target="_blank" rel="noopener noreferrer">spin</a>
-        </div>
-
-        <div class="card">
-          <h3>El sades</h3>
-          <p>test bntaked meno en bahbk🦦</p>
-          <a href="https://seiff712.github.io/7/" class="btn" target="_blank" rel="noopener noreferrer">test</a>
-        </div>
-
-        <div class="card">
-          <h3>El sabe3 😍</h3>
-          <p>Eid millad a7la banota feldonya💝</p>
-          <a href="https://seiff712.github.io/6/" class="btn" target="_blank" rel="noopener noreferrer">HBD</a>
-        </div>
-
-        <div class="card">
-          <h2>El tamen 🎯</h2>
-          <p>Bgrab fiky 🦦</p>
-          <a href="https://seiff712.github.io/maze/" class="btn" target="_blank" rel="noopener noreferrer">Maze</a>
-        </div>
-
-        <div class="card">
-          <h2>El tase3🐍</h2>
-          <p>so7abk:</p>
-          <a href="https://seiff712.github.io/snake/" class="btn" target="_blank" rel="noopener noreferrer">Maze</a>
-        </div>
-
-        <div class="card locked">
-          <h2>El 3asher</h2>
-          <p> lama tb2ii shatra tanyy</p>
-        </div>
-
-        <div class="card locked">
-          <h2>El 7dashar</h2>
-          <p> lama tb2ii shatra tanyy</p>
-        </div>
-
-        <div class="card locked">
-          <h2>El etnashar</h2>
-          <p> lama tb2ii shatra tanyy</p>
-        </div>
-      </section>
-    </div>
-  </div>
-
-  <script>
-    // ⚠️ حماية شكلية فقط (الباسورد موجود في الكود)
-    const PASSWORD = "28/08"; // غيّره
-
-    const gate = document.getElementById("pwGate");
-    const content = document.getElementById("pageContent");
-    const input = document.getElementById("pwInput");
-    const err = document.getElementById("pwErr");
-
-    function unlock() {
-  gate.style.display = "none";
-  content.hidden = false;
+<style>
+body {
+    background: black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    margin:0;
+    color:white;
+    font-family:Arial;
+    overflow:hidden;
 }
 
-    function lock() {
-      localStorage.removeItem("site_unlocked");
-      gate.style.display = "flex";
-      content.hidden = true;
-      input.value = "";
-      err.textContent = "";
-    }
+.bg {
+    position:fixed;
+    inset:0;
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    z-index:-2;
+    transition:opacity 1s ease;
+}
 
-  
-    document.getElementById("pwBtn").addEventListener("click", () => {
-      err.textContent = "";
-      if (input.value === PASSWORD) unlock();
-      else err.textContent = "Noh msh da graby a7la youm kda";
-    });
+canvas{
+    background:#1111115a;
+    box-shadow:0 0 20px rgb(0, 255, 200);
+    border-radius:10px;
+}
 
-    input.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") document.getElementById("pwBtn").click();
-    });
+.ui{
+    position:absolute;
+    top:10px;
+}
 
-    
-  </script>
+.screen{
+    position:absolute;
+    background:rgba(94, 63, 82, 0.168);
+    padding:30px;
+    border-radius:10px;
+    text-align:center;
+}
+
+button{
+    padding:10px;
+    margin:10px;
+    cursor:pointer;
+    background:rgba(255, 255, 255, 0.193);
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="bg1" class="bg"></div>
+<div id="bg2" class="bg" style="opacity:0"></div>
+
+<div class="ui">
+Score: <span id="score">0</span> |
+Level: <span id="level">1</span> |
+Lives: <span id="lives">3</span> |
+High: <span id="high">0</span>
+</div>
+
+<canvas id="c" width="400" height="400"></canvas>
+
+<!-- 🔥 زرار Pause -->
+<button id="pauseBtn" onclick="togglePause()" style="position:absolute; bottom:20px;">
+⏸ Pause
+</button>
+
+<div id="menu" class="screen">
+<h2>Amany el so3bana🐍</h2>
+<button onclick="startGame()">Start Game</button>
+</div>
+
+<div id="gameover" class="screen" style="display:none">
+<h2>Game Over</h2>
+<p id="final"></p>
+<button onclick="location.reload()">Restart</button>
+</div>
+
+<script>
+const c = document.getElementById('c');
+const ctx = c.getContext('2d');
+
+let snake, dx, dy, food, score, level, lives, speed;
+let grid=20;
+let interval;
+
+let obstacles = [];
+let paused = false;
+
+// sounds
+const eatSound = new Audio("eat.wav");
+const hitSound = new Audio("hit.wav");
+
+// backgrounds
+const backgrounds = [
+ "bg1-blur.jpg",
+ "b2.jpg",
+ "n2c.jpg",
+ "b3.jpg",
+ "n4.jpg",
+ "b6.jpg",
+ "n6.jpg",
+ "b4.jpg",
+ "10.jpg",
+ "b1.jpg",
+];
+
+let currentBg = 1;
+let bgIndex = 0;
+let bgInterval;
+
+function setInitialBackground(){
+ document.getElementById('bg1').style.backgroundImage = `url(${backgrounds[0]})`;
+ document.getElementById('bg2').style.opacity = 0;
+}
+
+function changeBackground(index){
+ let bg1 = document.getElementById('bg1');
+ let bg2 = document.getElementById('bg2');
+
+ let next = currentBg === 1 ? bg2 : bg1;
+ let current = currentBg === 1 ? bg1 : bg2;
+
+ next.style.backgroundImage = `url(${backgrounds[index]})`;
+ next.style.opacity = 1;
+
+ current.style.opacity = 0;
+
+ currentBg = currentBg === 1 ? 2 : 1;
+}
+
+function autoBackgroundSlider(){
+ bgIndex = (bgIndex + 1) % backgrounds.length;
+ changeBackground(bgIndex);
+}
+
+// 🔥 Pause / Resume
+function togglePause(){
+ paused = !paused;
+ let btn = document.getElementById("pauseBtn");
+ btn.innerText = paused ? "▶ Resume" : "⏸ Pause";
+}
+
+function rand(){return Math.floor(Math.random()*20)*grid}
+
+function reset(){
+ snake=[{x:200,y:200}];
+ dx=grid;dy=0;
+ score=0;level=1;lives=3;
+ speed=120;
+ obstacles=[];
+ spawnFood();
+}
+
+function spawnFood(){
+ let valid=false;
+ while(!valid){
+   let newFood = {x:rand(), y:rand(), type:Math.random()};
+   valid = !snake.some(s=>s.x===newFood.x && s.y===newFood.y) &&
+           !obstacles.some(o=>o.x===newFood.x && o.y===newFood.y);
+   if(valid) food=newFood;
+ }
+}
+
+function spawnObstacles(){
+ obstacles = [];
+ for(let i=0;i<level;i++){
+   obstacles.push({x:rand(), y:rand()});
+ }
+}
+
+function startGame(){
+ document.getElementById('menu').style.display='none';
+ setInitialBackground();
+ reset();
+
+ interval=setInterval(loop,speed);
+ bgInterval=setInterval(autoBackgroundSlider,3000);
+}
+
+function loop(){
+ if(paused) return;
+
+ move();
+ if(checkCollision()) return;
+ draw();
+}
+
+function move(){
+ let head={x:snake[0].x+dx,y:snake[0].y+dy};
+
+ if(head.x>=400)head.x=0;
+ if(head.x<0)head.x=380;
+ if(head.y>=400)head.y=0;
+ if(head.y<0)head.y=380;
+
+ snake.unshift(head);
+
+ if(head.x===food.x && head.y===food.y){
+   eat();
+ }else{
+   snake.pop();
+ }
+}
+
+function eat(){
+ eatSound.currentTime = 0;
+ eatSound.play();
+
+ if(food.type<0.7){score+=1}
+ else if(food.type<0.9){score+=3}
+ else{snake.pop()}
+
+ spawnFood();
+ updateLevel();
+}
+
+function updateLevel(){
+ let newLevel=Math.floor(score/5)+1;
+
+ if(newLevel!==level){
+   level=newLevel;
+   speed = Math.max(60, 120 - level * 4);
+
+   spawnObstacles();
+
+   clearInterval(interval);
+   interval=setInterval(loop,speed);
+ }
+}
+
+function checkCollision(){
+ let head=snake[0];
+
+ for(let i=1;i<snake.length;i++){
+   if(head.x===snake[i].x && head.y===snake[i].y){
+     loseLife(); return true;
+   }
+ }
+
+ for(let o of obstacles){
+   if(head.x===o.x && head.y===o.y){
+     loseLife(); return true;
+   }
+ }
+}
+
+function loseLife(){
+ hitSound.currentTime = 0;
+ hitSound.play();
+
+ lives--;
+ if(lives<=0){
+   document.getElementById('gameover').style.display='block';
+   document.getElementById('final').innerText='Score: '+score;
+   clearInterval(interval);
+ }
+}
+
+function draw(){
+ ctx.clearRect(0,0,400,400);
+
+ snake.forEach((s,i)=>{
+   ctx.fillStyle=i===0?'#0f0':'#6f6';
+   ctx.fillRect(s.x,s.y,20,20);
+ });
+
+ ctx.fillStyle = "#888";
+ obstacles.forEach(o=>{
+   ctx.fillRect(o.x,o.y,20,20);
+ });
+
+ ctx.fillStyle='red';
+ ctx.fillRect(food.x,food.y,20,20);
+
+ document.getElementById('score').innerText=score;
+ document.getElementById('level').innerText=level;
+ document.getElementById('lives').innerText=lives;
+}
+
+document.addEventListener('keydown',e=>{
+ if(e.key==='ArrowUp' && dy===0){dx=0;dy=-grid}
+ if(e.key==='ArrowDown' && dy===0){dx=0;dy=grid}
+ if(e.key==='ArrowLeft' && dx===0){dx=-grid;dy=0}
+ if(e.key==='ArrowRight' && dx===0){dx=grid;dy=0}
+
+ // 🔥 space يعمل pause + يغير الزرار
+ if(e.key === ' '){
+   togglePause();
+ }
+});
+</script>
+
 </body>
-
 </html>
-
-
-
